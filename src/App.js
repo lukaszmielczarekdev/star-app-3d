@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { Canvas } from "react-three-fiber";
+import { Sky } from "@react-three/drei";
+import { Vector3 } from "three";
+import { Physics } from "@react-three/cannon";
+import { Camera } from "./Camera";
+import { Ground } from "./Ground";
+import { Player } from "./Player";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Canvas>
+      <Camera fov={50} />
+      <Sky sunPosition={new Vector3(100, 10, 100)} />
+      <ambientLight intensity={0.3} />
+      <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
+      <Physics>
+        <Ground />
+        <Player />
+      </Physics>
+    </Canvas>
   );
-}
+};
 
 export default App;
