@@ -2,20 +2,15 @@ import React, { useEffect, useRef } from "react";
 import { useSphere } from "@react-three/cannon";
 import { useThree, useFrame } from "react-three-fiber";
 import { PointerLockControls } from "./PointerLockControls";
-// import { usePlayerControls } from './usePlayerControls';
-// import { Vector3 } from "three";
+import { usePlayerControls } from "./usePlayerControls";
+import { Vector3 } from "three";
 
-// const SPEED = 5;
+const SPEED = 6;
 
 export const Player = (props) => {
   const { camera } = useThree();
-  // const {
-  //   moveForward,
-  //   moveBackward,
-  //   moveLeft,
-  //   moveRight,
-  //   jump
-  // } = usePlayerControls();
+  const { moveForward, moveBackward, moveLeft, moveRight, jump } =
+    usePlayerControls();
   const [ref, api] = useSphere(() => ({
     mass: 1,
     type: "Dynamic",
@@ -30,26 +25,27 @@ export const Player = (props) => {
 
   useFrame(() => {
     camera.position.copy(ref.current.position);
-    // const direction = new Vector3();
+    const direction = new Vector3();
 
-    // const frontVector = new Vector3(
-    //   0,
-    //   0,
-    //   Number(moveBackward) - Number(moveForward)
-    // );
-    // const sideVector = new Vector3(Number(moveLeft) - Number(moveRight), 0, 0);
+    const frontVector = new Vector3(
+      0,
+      0,
+      Number(moveBackward) - Number(moveForward)
+    );
+    const sideVector = new Vector3(Number(moveLeft) - Number(moveRight), 0, 0);
 
-    // direction
-    //   .subVectors(frontVector, sideVector)
-    //   .normalize()
-    //   .multiplyScalar(SPEED)
-    //   .applyEuler(camera.rotation);
+    direction
+      .subVectors(frontVector, sideVector)
+      .normalize()
+      .multiplyScalar(SPEED)
+      .applyEuler(camera.rotation);
 
-    // api.velocity.set(direction.x, velocity.current[1], direction.z);
+    api.velocity.set(direction.x, velocity.current[1], direction.z);
+    ref.current.getWorldPosition(ref.current.position);
 
-    // if (jump && Math.abs(velocity.current[1].toFixed(2)) < 0.05) {
-    //   api.velocity.set(velocity.current[0], 10, velocity.current[2]);
-    // }
+    if (jump && Math.abs(velocity.current[1].toFixed(2)) < 0.05) {
+      api.velocity.set(velocity.current[0], 10, velocity.current[2]);
+    }
   });
 
   return (

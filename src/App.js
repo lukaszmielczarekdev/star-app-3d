@@ -8,12 +8,12 @@ import { Player } from "./Player";
 
 const App = () => {
   return (
-    <Canvas>
+    <Canvas shadowMap sRGB gl={{ alpha: false }}>
       <Camera fov={50} />
       <Sky sunPosition={new Vector3(100, 10, 100)} />
       <ambientLight intensity={0.3} />
       <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
-      <Physics>
+      <Physics gravity={[0, -30, 0]}>
         <Ground />
         <Player />
       </Physics>
