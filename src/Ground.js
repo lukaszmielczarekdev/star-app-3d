@@ -1,7 +1,7 @@
 import React from "react";
 import { usePlane } from "@react-three/cannon";
 import { TextureLoader, RepeatWrapping } from "three";
-import rock from "./assets/images/textures/rock.jpg";
+import rock from "./images/textures/rock.jpg";
 
 export const Ground = (props) => {
   const [ref] = usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0], ...props }));
