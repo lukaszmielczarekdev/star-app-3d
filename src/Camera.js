@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useLayoutEffect } from "react";
-import { useThree } from "react-three-fiber";
+import { useThree } from "@react-three/fiber";
 
 export const Camera = (props) => {
   const ref = useRef();

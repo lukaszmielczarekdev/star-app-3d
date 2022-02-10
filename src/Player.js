@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useSphere } from "@react-three/cannon";
-import { useThree, useFrame } from "react-three-fiber";
+import { useThree, useFrame } from "@react-three/fiber";
 import { PointerLockControls } from "./PointerLockControls";
 import { usePlayerControls } from "./usePlayerControls";
 import { Vector3 } from "three";
