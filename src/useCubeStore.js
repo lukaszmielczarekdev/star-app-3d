@@ -15,3 +15,14 @@ export const useSetCube = () => {
       <Cube key={nanoid()} position={[x, y, z]} />,
     ]);
 };
+
+export const useRemoveCube = () => {
+  const setCubes = useSetRecoilState($cubes);
+  return (x, y, z) =>
+    setCubes((cubes) =>
+      cubes.filter(
+        (cube) =>
+          JSON.stringify(cube.props.position) !== JSON.stringify([x, y, z])
+      )
+    );
+};

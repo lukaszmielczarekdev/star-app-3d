@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useBox } from "@react-three/cannon";
 import { TextureLoader } from "three";
-import { useSetCube } from "./useCubeStore";
+import { useSetCube, useRemoveCube } from "./useCubeStore";
 import rock_polished from "./images/textures/rock_polished.jpg";
 
 export const Cube = (props) => {
   const [hover, set] = useState(null);
   const addCube = useSetCube();
+  const removeCube = useRemoveCube();
   const texture = new TextureLoader().load(rock_polished);
   const [ref] = useBox(() => ({
     type: "Static",
@@ -29,27 +30,27 @@ export const Cube = (props) => {
 
         switch (faceIndex) {
           case 4: {
-            addCube(x, y, z + 1);
+            e.altKey ? removeCube(x, y, z) : addCube(x, y, z + 1);
             return;
           }
           case 2: {
-            addCube(x, y + 1, z);
+            e.altKey ? removeCube(x, y, z) : addCube(x, y + 1, z);
             return;
           }
           case 1: {
-            addCube(x - 1, y, z);
+            e.altKey ? removeCube(x, y, z) : addCube(x - 1, y, z);
             return;
           }
           case 5: {
-            addCube(x, y, z - 1);
+            e.altKey ? removeCube(x, y, z) : addCube(x, y, z - 1);
             return;
           }
           case 3: {
-            addCube(x, y - 1, z);
+            e.altKey ? removeCube(x, y, z) : addCube(x, y - 1, z);
             return;
           }
           default: {
-            addCube(x + 1, y, z);
+            e.altKey ? removeCube(x, y, z) : addCube(x + 1, y, z);
             return;
           }
         }
