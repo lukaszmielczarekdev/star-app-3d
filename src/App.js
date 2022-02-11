@@ -1,7 +1,6 @@
 import { Canvas } from "@react-three/fiber";
-import { Sky } from "@react-three/drei";
-import { Vector3 } from "three";
 import { Physics } from "@react-three/cannon";
+import { Stars } from "@react-three/drei";
 import { Camera } from "./Camera";
 import { Ground } from "./Ground";
 import { Player } from "./Player";
@@ -19,7 +18,6 @@ const App = () => {
     <Canvas shadowMap sRGB gl={{ alpha: false }}>
       <RecoilRoot>
         <Camera fov={50} />
-        <Sky sunPosition={new Vector3(100, 10, 100)} />
         <ambientLight intensity={0.3} />
         <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
         <Physics gravity={[0, -30, 0]}>
@@ -28,6 +26,14 @@ const App = () => {
           <Cubes />
         </Physics>
       </RecoilRoot>
+      <Stars
+        radius={100}
+        depth={50}
+        count={3000}
+        factor={4}
+        saturation={0}
+        fade
+      />
     </Canvas>
   );
 };
