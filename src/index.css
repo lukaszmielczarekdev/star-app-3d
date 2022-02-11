@@ -27,3 +27,17 @@ body {
     helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
   color: black;
 }
+
+.hud {
+  font-family: "Josefin Sans", sans-serif;
+  color: white;
+  font-weight: 700;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2rem;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

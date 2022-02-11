@@ -8,7 +8,6 @@ import { Cube } from "./Cube";
 import { useCube } from "./useCubeStore";
 import { RecoilRoot } from "recoil";
 import Crosshair from "./Crosshair";
-import Hud from "./Hud";
 
 const Cubes = () => {
   const cubes = useCube();
@@ -17,28 +16,33 @@ const Cubes = () => {
 
 const App = () => {
   return (
-    <Canvas shadowMap sRGB gl={{ alpha: false }}>
-      <RecoilRoot>
-        <Camera fov={50} />
-        <Crosshair />
-        <Hud position={[0, 0, -2]} />
-        <ambientLight intensity={0.3} />
-        <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
-        <Physics gravity={[0, -30, 0]}>
-          <Ground />
-          <Player />
-          <Cubes />
-        </Physics>
-      </RecoilRoot>
-      <Stars
-        radius={100}
-        depth={50}
-        count={3000}
-        factor={4}
-        saturation={0}
-        fade
-      />
-    </Canvas>
+    <>
+      <Canvas shadowMap sRGB gl={{ alpha: false }}>
+        <RecoilRoot>
+          <Camera fov={50} />
+          <Crosshair />
+          <ambientLight intensity={0.3} />
+          <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
+          <Physics gravity={[0, -30, 0]}>
+            <Ground />
+            <Player />
+            <Cubes />
+          </Physics>
+        </RecoilRoot>
+        <Stars
+          radius={100}
+          depth={50}
+          count={3000}
+          factor={4}
+          saturation={0}
+          fade
+        />
+      </Canvas>
+      <span className="hud">
+        WSAD - Move // Space - Jump // Click - Add Block // Alt(Option) + Click
+        - Remove Block
+      </span>
+    </>
   );
 };
 
