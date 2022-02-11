@@ -7,6 +7,8 @@ import { Player } from "./Player";
 import { Cube } from "./Cube";
 import { useCube } from "./useCubeStore";
 import { RecoilRoot } from "recoil";
+import Crosshair from "./Crosshair";
+import Hud from "./Hud";
 
 const Cubes = () => {
   const cubes = useCube();
@@ -18,6 +20,8 @@ const App = () => {
     <Canvas shadowMap sRGB gl={{ alpha: false }}>
       <RecoilRoot>
         <Camera fov={50} />
+        <Crosshair />
+        <Hud position={[0, 0, -2]} />
         <ambientLight intensity={0.3} />
         <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
         <Physics gravity={[0, -30, 0]}>
