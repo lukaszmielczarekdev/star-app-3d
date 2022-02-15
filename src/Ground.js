@@ -9,11 +9,11 @@ export const Ground = (props) => {
 
   texture.wrapS = RepeatWrapping;
   texture.wrapT = RepeatWrapping;
-  texture.repeat.set(240, 240);
+  texture.repeat.set(50, 50);
 
   return (
     <mesh ref={ref} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[1000, 1000]} />
+      <planeBufferGeometry attach="geometry" args={[100, 100]} />
       <meshStandardMaterial map={texture} attach="material" />
     </mesh>
   );

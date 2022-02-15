@@ -2,19 +2,21 @@ import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/cannon";
 import { Stars } from "@react-three/drei";
 import { Camera } from "./Camera";
-import { Ground } from "./Ground";
+// import { Ground } from "./Ground";
 import { Player } from "./Player";
-import { Cube } from "./Cube";
 import { useCube } from "./useCubeStore";
 import { RecoilRoot } from "recoil";
 import Crosshair from "./Crosshair";
-
-const Cubes = () => {
-  const cubes = useCube();
-  return [<Cube position={[0, 0.5, -10]} />, ...cubes];
-};
+import { useGenerateWorld } from "./useCubeStore";
 
 const App = () => {
+  const world = useGenerateWorld();
+
+  const Cubes = () => {
+    const cubes = useCube();
+    return [...world, ...cubes];
+  };
+
   return (
     <>
       <Canvas shadowMap sRGB gl={{ alpha: false }}>
@@ -24,7 +26,7 @@ const App = () => {
           <ambientLight intensity={0.3} />
           <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
           <Physics gravity={[0, -30, 0]}>
-            <Ground />
+            {/* <Ground /> */}
             <Player />
             <Cubes />
           </Physics>
